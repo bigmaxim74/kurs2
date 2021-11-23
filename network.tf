@@ -69,7 +69,7 @@ resource "azurerm_network_interface_security_group_association" "kursach" {
 resource "random_id" "randomId" {
     keepers = {
         # Generate a new ID only when a new resource group is defined
-        resource_group = azurerm_resource_group.myterraformgroup.name
+        resource_group = azurerm_resource_group.rg-hello-azure-tf
     }
 
     byte_length = 8
@@ -78,8 +78,8 @@ resource "random_id" "randomId" {
 # Create storage account for boot diagnostics
 resource "azurerm_storage_account" "mystorageaccount" {
     name                        = "diag${random_id.randomId.hex}"
-    resource_group_name         = azurerm_resource_group.myterraformgroup.name
-    location                    = "eastus"
+    resource_group_name         = azurerm_resource_group.resource_group_name
+    location                    = "NorthEurope"
     account_tier                = "Standard"
     account_replication_type    = "LRS"
 
@@ -101,7 +101,7 @@ output "tls_private_key" {
 # Create virtual machine
 resource "azurerm_linux_virtual_machine" "myterraformvm" {
     name                  = "myVM"
-    location              = "eastus"
+    location              = "NorthEurope"
     resource_group_name   = "rg-hello-azure-tf"
     network_interface_ids = [azurerm_network_interface.m2terraformnic.id]
     size                  = "Standard_DS1_v2"
