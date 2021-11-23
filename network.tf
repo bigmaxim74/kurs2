@@ -69,7 +69,7 @@ resource "azurerm_network_interface_security_group_association" "kursach" {
 resource "random_id" "randomId" {
     keepers = {
         # Generate a new ID only when a new resource group is defined
-        resource_group = azurerm_resource_group.rg-hello-azure-tf
+        resource_group = azurerm_resource_group.resource_group_name
     }
 
     byte_length = 8
