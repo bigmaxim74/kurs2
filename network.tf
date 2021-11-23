@@ -67,6 +67,8 @@ resource "azurerm_network_interface_security_group_association" "kursach" {
 
 # Generate random text for a unique storage account name
 resource "random_id" "randomId" {
+    resource_group_name       = "rg-hello-azure-tf"
+    
     keepers = {
         # Generate a new ID only when a new resource group is defined
         resource_group = azurerm_resource_group.resource_group_name
