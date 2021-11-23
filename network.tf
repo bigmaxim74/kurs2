@@ -107,6 +107,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
     }
 
     boot_diagnostics {
+        storage_account_name = "sakursazuretf"
         storage_account_uri = azurerm_storage_account.storage_account_name.primary_blob_endpoint
     }
 
