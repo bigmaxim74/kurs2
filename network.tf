@@ -65,30 +65,6 @@ resource "azurerm_network_interface_security_group_association" "kursach" {
     network_security_group_id = azurerm_network_security_group.myterraformnsg.id
 }
 
-# Generate random text for a unique storage account name
-resource "random_id" "randomId" {
-    resource_group_name       = "rg-hello-azure-tf"
-    
-    keepers = {
-        # Generate a new ID only when a new resource group is defined
-        resource_group = azurerm_resource_group.resource_group_name
-    }
-
-    byte_length = 8
-}
-
-# Create storage account for boot diagnostics
-resource "azurerm_storage_account" "mystorageaccount" {
-    name                        = "diag${random_id.randomId.hex}"
-    resource_group_name         = azurerm_resource_group.resource_group_name
-    location                    = "NorthEurope"
-    account_tier                = "Standard"
-    account_replication_type    = "LRS"
-
-    tags = {
-        environment = "Terraform Demo"
-    }
-}
 
 # Create (and display) an SSH key
 resource "tls_private_key" "example_ssh" {
@@ -131,7 +107,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
     }
 
     boot_diagnostics {
-        storage_account_uri = azurerm_storage_account.mystorageaccount.primary_blob_endpoint
+        storage_account_uri = azurerm_storage_account.storage_account_name.primary_blob_endpoint
     }
 
 }
