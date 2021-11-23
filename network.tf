@@ -45,7 +45,7 @@ resource "azurerm_network_security_group" "myterraformnsg" {
 }
 
 # Create network interface
-resource "azurerm_network_interface" "myterraformnic" {
+resource "azurerm_network_interface" "m2terraformnic" {
     name                      = "myNIC"
     location                  = "NorthEurope"
     resource_group_name       = "rg-hello-azure-tf"
@@ -61,7 +61,7 @@ resource "azurerm_network_interface" "myterraformnic" {
 
 # Connect the security group to the network interface
 resource "azurerm_network_interface_security_group_association" "kursach" {
-    network_interface_id      = azurerm_network_interface.myterraformnic.id
+    network_interface_id      = azurerm_network_interface.m2terraformnic.id
     network_security_group_id = azurerm_network_security_group.myterraformnsg.id
 }
 
