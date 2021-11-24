@@ -1,4 +1,3 @@
-
 # Generate a random integer to create a globally unique name
 resource "random_integer" "ri" {
   min = 10000
@@ -27,10 +26,13 @@ resource "azurerm_app_service" "webapp" {
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   app_service_plan_id = azurerm_app_service_plan.appserviceplan.id
+
   source_control {
+    app_id             = azurerm_linux_web_app.rg.id
     repo_url           = "https://github.com/bigmaxim74/testkurs1"
     branch             = "main"
   }
+
   site_config {
     linux_fx_version = "PHP|7.0"
     scm_type         = "LocalGit"
