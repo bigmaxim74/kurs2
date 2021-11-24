@@ -28,7 +28,7 @@ resource "azurerm_app_service" "webapp" {
   source_control {
     repo_url           = "https://github.com/bigmaxim74/testkurs1"
     branch             = "main"
-    manual_integration = true
-    use_mercurial      = false
+    #manual_integration = true
+    #use_mercurial      = false
   }
 }
