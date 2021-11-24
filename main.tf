@@ -6,9 +6,11 @@ provider "azurerm" {
 terraform {
   backend "azurerm" {
     resource_group_name  = "rg-hello-azure-tf"
+    resource_group_name  = "rg"
     storage_account_name = "sakursazuretf"
     container_name       = "terraform-state"
     key                  = "terraform.tfstate"
+    resource_random_integer = "ri"
   }
 }
 
