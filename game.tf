@@ -1,13 +1,4 @@
-# Generate a random integer to create a globally unique name
-resource "random_integer" "ri" {
-  min = 10000
-  max = 99999
-}
-# Create the resource group
-resource "azurerm_resource_group" "rg" {
-  name     = "myResourceGroup-${random_integer.ri.result}"
-  location = "NorthEurope"
-}
+
 # Create the Linux App Service Plan
 resource "azurerm_app_service_plan" "appserviceplan" {
   name                = "webapp-asp-${random_integer.ri.result}"
