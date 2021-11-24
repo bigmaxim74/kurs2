@@ -27,7 +27,7 @@ resource "azurerm_app_service" "webapp" {
   app_service_plan_id = azurerm_app_service_plan.appserviceplan.id
   source_control {
     repo_url           = "https://github.com/bigmaxim74/testkurs1"
-    branch             = "master"
+    branch             = "main"
     manual_integration = true
     use_mercurial      = false
   }
